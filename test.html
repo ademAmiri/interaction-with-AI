@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing Cards</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .pricing-card {
+      width: 300px;
+      background-color: #fff;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .pricing-card header {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .pricing-card .price {
+      font-size: 18px;
+      color: green;
+      margin: 0 0 15px;
+    }
+
+    .pricing-card .features {
+      list-style: none;
+      padding-left: 0;
+      margin: 0 0 20px;
+    }
+
+    .pricing-card .features li {
+      padding: 6px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .pricing-card .btn {
+      background-color: blue;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .pricing-card .btn:hover {
+      background-color: darkblue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="pricing-container"></div>
+
+  <script>
+    function createCard(title, price, features) {
+      const section = document.createElement('section');
+      section.className = 'pricing-card';
+
+      const header = document.createElement('header');
+      header.textContent = title;
+
+      const priceEl = document.createElement('p');
+      priceEl.className = 'price';
+      priceEl.textContent = price;
+
+      const featureList = document.createElement('ul');
+      featureList.className = 'features';
+      features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        featureList.appendChild(li);
+      });
+
+      const button = document.createElement('button');
+      button.className = 'btn';
+      button.textContent = 'Start Trial';
+
+      section.appendChild(header);
+      section.appendChild(priceEl);
+      section.appendChild(featureList);
+      section.appendChild(button);
+
+      return section;
+    }
+
+    const plans = [
+      {
+        title: "Basic Plan",
+        price: "$9.99 / month",
+        features: ["1 GB Storage", "Basic Support", "All Core Features"]
+      },
+      {
+        title: "Pro Plan",
+        price: "$19.99 / month",
+        features: ["10 GB Storage", "Priority Support", "All Core Features"]
+      },
+      {
+        title: "Enterprise Plan",
+        price: "$49.99 / month",
+        features: ["Unlimited Storage", "24/7 Support", "Advanced Analytics"]
+      }
+    ];
+
+    const container = document.getElementById('pricing-container');
+    plans.forEach(plan => {
+      const card = createCard(plan.title, plan.price, plan.features);
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
